@@ -1,4 +1,5 @@
 import { server } from "../../lib/api/server";
+import { ListingsData } from "./types";
 
 const LISTINGS = `
 query Listings {
@@ -21,7 +22,7 @@ interface Props {
 
 export const Listings = ({ title }: Props) => {
   const fetchListings = async () => {
-    const { data } = await server.fetch({ query: LISTINGS });
+    const { data } = await server.fetch<ListingsData>({ query: LISTINGS });
     console.log(data);
   };
 
@@ -32,7 +33,3 @@ export const Listings = ({ title }: Props) => {
     </>
   );
 };
-
-// export const Listings2: FunctionComponent<Props> = ({title, children}) => {
-//   return <h2>{title}</h2>
-// }
