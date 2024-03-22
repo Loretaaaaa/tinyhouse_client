@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.9.7",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/introspection": "^4.0.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +15,7 @@
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
     "antd": "^5.15.2",
+    "graphql": "^16.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -24,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen:schema": "graphql-codegen --endpoint http://localhost:9000/api",
+    "codegen:generate": "graphql-codegen --localSchemaFile=./src/generated/schema.json --verbose --includes=src/**/*.ts --globalTypesFile=./src/lib/graphql/globalTypes.ts --target=typescript"
   },
   "eslintConfig": {
     "extends": [
@@ -44,8 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:9000",
-  "devDependencies": {
-    "apollo": "^2.34.0"
-  }
+  "proxy": "http://localhost:9000"
 }
