@@ -7,6 +7,7 @@ import {
   Login,
   NotFound,
   User,
+  AppHeader
 } from "./sections";
 import { Layout } from "antd";
 import { Viewer } from "./lib/api/types";
@@ -23,11 +24,12 @@ const initialViewer: Viewer = {
 
 function App() {
   const [viewer, setViewer] = useState<Viewer>(initialViewer);
-  console.log(viewer)
   return (
-    // <Listings title="TinyHouse Listings" />
     <BrowserRouter>
-      <Layout id="app">
+      <Layout id="app" style={{ position: "relative" }}>
+        <div style={{ position: "sticky", top: 0, zIndex: 1 }} className="app__affix-header">
+          <AppHeader viewer={viewer} setViewer={setViewer} />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/host" element={<Host />} />
